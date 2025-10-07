@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Club Menu — Gabby's Boutique Hotel & Lounge</title>
+
+    <!-- base styles (reuse) -->
+    <link rel="preload" href="./fonts/Cinzel-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./fonts/Cinzel-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- club theme overrides only -->
+    <style>
+      /* ===== CLUB NEON THEME (green) ===== */
+      :root{
+        --club-neon: #7dff5f;
+        --club-neon-hi: #b6ff9f;
+        --club-neon-deep: #0e3c1f;
+      }
+
+      /* Replace gold gradient with neon green for this page only */
+      .club .gold-text{
+        background: linear-gradient(180deg, var(--club-neon-hi) 0%, var(--club-neon) 48%, #2b7a36 100%);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+        text-shadow:
+          0 0 22px rgba(125,255,95,.25),
+          0 0 40px rgba(125,255,95,.18);
+      }
+
+      /* Logo glow a bit greener */
+      .club .logo{
+        filter:
+          drop-shadow(0 18px 46px rgba(125,255,95,.20))
+          drop-shadow(0 0 28px rgba(125,255,95,.24));
+      }
+
+      /* Big “CLUB MENU” banner */
+      .club-banner{
+        width:min(1080px, 100% - 32px);
+        margin:.6rem auto 1rem;
+        border-radius:18px;
+        background:
+          radial-gradient(120% 140% at 50% 0%, #0c0c0c 0%, #0b0b0b 70%) padding-box,
+          linear-gradient(180deg, rgba(125,255,95,.5), rgba(0,0,0,.2) 60%, rgba(125,255,95,.35)) border-box;
+        border:1px solid transparent;
+        box-shadow:
+          0 14px 30px rgba(0,0,0,.55),
+          0 0 28px rgba(125,255,95,.18) inset;
+        padding:1rem 1.2rem 1.1rem;
+        text-align:center;
+      }
+      .club-banner h2{
+        margin:0;
+        font-size:clamp(1.4rem, 5.6vw, 2.2rem);
+        letter-spacing:.14em;
+        text-transform:uppercase;
+      }
+
+      /* Hero panel (wide image under banner) */
+      .club-hero{
+        width:min(1080px, 100% - 32px);
+        margin:0 auto 1rem;
+        border-radius:18px; overflow:hidden;
+        background:#0f0f0f;
+        border:1px solid rgba(125,255,95,.45);
+        box-shadow:0 12px 28px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.04);
+      }
+      .club-hero img{ width:100%; height:230px; object-fit:cover; display:block; }
+
+      /* Card chrome: gentle green edge for club pages */
+      .club .food-card{
+        background:
+          linear-gradient(180deg, var(--card) 0%, var(--card-dark) 100%) padding-box,
+          linear-gradient(180deg, rgba(125,255,95,.35), rgba(60,150,78,.28) 55%, rgba(33,99,54,.28)) border-box;
+        border:1px solid transparent;
+      }
+      .club .food-card:hover{
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.05),
+          0 14px 28px rgba(0,0,0,.55),
+          0 0 20px rgba(125,255,95,.18);
+      }
+
+      /* Bottom nav accents -> green */
+      .club .bottom-nav{
+        background: #0a0f0a;
+        border-top:1px solid #0f2e18;
+      }
+      .club .bottom-nav a{
+        color: var(--club-neon);
+        text-shadow: 0 0 10px rgba(125,255,95,.18);
+      }
+      .club .bottom-nav a.active{
+        box-shadow: inset 0 -2px 0 rgba(125,255,95,.85);
+      }
+
+      /* Small category chips (optional row) */
+      .club-chips{
+        width:min(1080px, 100% - 32px);
+        margin:-.2rem auto .6rem;
+        display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center;
+      }
+      .club-chip{
+        padding:.5rem .8rem; border-radius:999px; font-weight:800;
+        text-decoration:none; color:#051807; letter-spacing:.02em;
+        background:
+          linear-gradient(180deg, var(--club-neon) 0%, #2f9a4b 100%) padding-box,
+          linear-gradient(180deg, rgba(0,0,0,.65), rgba(125,255,95,.35)) border-box;
+        border:1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 10px 20px rgba(0,0,0,.45);
+        transition: transform .16s ease, filter .16s ease;
+      }
+      .club-chip:hover{ transform:translateY(-2px); filter:brightness(1.04); }
+
+      /* tighten featured title spacing */
+      .club .featured{ margin-top:.2rem; }
+    </style>
+  </head>
+
+  <body class="club">
+    <!-- HERO -->
+    <header class="hero" role="banner">
+      <img class="logo" src="./images/club-logo.png" alt="Gabby's Club" />
+      <p class="tagline gold-text">Glow Nights • Premium Vibes</p>
+    </header>
+
+    <!-- CLUB MENU banner -->
+    <div class="club-banner" aria-label="Club menu banner">
+      <h2 class="gold-text">CLUB MENU</h2>
+    </div>
+
+    <!-- Wide club hero image -->
+    <div class="club-hero" aria-hidden="true">
+      <img src="./images/club-hero.jpg" alt="Club interior ambience" />
+    </div>
+
+    <!-- quick chips (optional: jump to tabs/sections) -->
+    <nav class="club-chips" aria-label="Quick filters">
+      <a class="club-chip" href="./drinks.html">Drinks</a>
+      <a class="club-chip" href="./finger-foods.html">Bites</a>
+      <a class="club-chip" href="./rooms.html">VIP Rooms</a>
+      <a class="club-chip" href="./contact.html">Book a Table</a>
+    </nav>
+
+    <main role="main">
+      <!-- MENU title (kept for consistency with site) -->
+      <div class="menu-title" aria-label="Menu">
+        <h2 class="gold-text">Tonight’s Picks</h2>
+        <span class="menu-underline" aria-hidden="true"></span>
+      </div>
+
+      <!-- Featured: 4 cards -->
+      <section class="featured" aria-labelledby="featured-heading">
+        <h3 id="featured-heading" class="featured-title gold-text">🔥 Crowd Favorites</h3>
+
+        <div class="food-grid">
+          <!-- Card 1 -->
+          <article class="food-card">
+            <img src="./images/belaire-fantome.jpg" alt="Belaire Fantôme Luxe" />
+            <div class="food-info">
+              <h4 class="food-name gold-text">Belaire Fantôme Luxe</h4>
+              <p class="food-price gold-text">Ask</p>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="food-card">
+            <img src="./images/monkey-shoulder.jpg" alt="Monkey Shoulder" />
+            <div class="food-info">
+              <h4 class="food-name gold-text">Monkey Shoulder</h4>
+              <p class="food-price gold-text">Ask</p>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="food-card">
+            <img src="./images/dancefloor.jpg" alt="Signature Cocktails" />
+            <div class="food-info">
+              <h4 class="food-name gold-text">Signature Cocktails</h4>
+              <p class="food-price gold-text">From ₦6,000</p>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="food-card">
+            <img src="./images/vip-lounge.jpg" alt="VIP Bottle Service" />
+            <div class="food-info">
+              <h4 class="food-name gold-text">VIP Bottle Service</h4>
+              <p class="food-price gold-text">Reserve</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- Fixed Bottom Navigation (reused) -->
+    <nav class="bottom-nav" aria-label="Primary">
+      <a href="./index-club.html" class="active gold-text">Home</a>
+      <a href="./finger-foods.html" class="gold-text">Bites</a>
+      <a href="./drinks.html" class="gold-text">Drinks</a>
+      <a href="./rooms.html" class="gold-text">Rooms</a>
+      <a href="./contact.html" class="gold-text">Contact</a>
+    </nav>
+  </body>
+</html>
