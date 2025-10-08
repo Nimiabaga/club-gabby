@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smoothies — Gabby's Boutique Hotel & Lounge</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    /* ===== Neon Green Theme (matches Bites/Drinks) ===== */
+    .gold-text {
+      background: linear-gradient(180deg, #b6ff9f 0%, #7dff5f 48%, #2b7a36 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 22px rgba(125,255,95,.25), 0 0 40px rgba(125,255,95,.18);
+    }
+    .logo {
+      filter: drop-shadow(0 18px 46px rgba(125,255,95,.20))
+              drop-shadow(0 0 28px rgba(125,255,95,.24));
+    }
+
+    /* Smoothie card */
+    .smoothie-card {
+      width:min(1080px, 100% - 32px);
+      margin:0 auto 1.2rem;
+      background: radial-gradient(160% 180% at 50% -30%, #0f1a0f 0%, #000 60%);
+      border:1px solid rgba(125,255,95,.35);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 8px 22px rgba(0,0,0,.45);
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .smoothie-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 10px 28px rgba(125,255,95,.18);
+    }
+
+    .smoothie-hero {
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      display:block;
+      border-bottom:1px solid #1d1d1d;
+    }
+
+    .smoothie-body {
+      padding:1.4rem 1.6rem;
+      background:#111;
+      text-align:center;
+    }
+
+    .smoothie-title {
+      margin:0 0 .3rem;
+      font-weight:900;
+      font-size:1.35rem;
+      background:linear-gradient(180deg,#b6ff9f,#7dff5f 50%,#2b7a36);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 16px rgba(125,255,95,.25);
+      letter-spacing:.03em;
+    }
+
+    .smoothie-price-note {
+      margin:0 0 1rem;
+      font-size:.95rem;
+      font-weight:700;
+      color:#7dff5f;
+      opacity:.9;
+    }
+
+    .smoothie-list {
+      list-style:none;
+      padding-left:0;
+      margin:0;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap:.7rem 1rem;
+      text-align:center;
+    }
+
+    .smoothie-list li {
+      color:#eaffea;
+      font-weight:700;
+      font-size:.9rem;
+      background:rgba(255,255,255,.05);
+      border-radius:8px;
+      padding:.5rem .75rem;
+      box-shadow:inset 0 0 0 1px rgba(125,255,95,.25);
+      transition:background .2s ease, transform .2s ease;
+    }
+    .smoothie-list li:hover {
+      background:rgba(125,255,95,.08);
+      transform:translateY(-2px);
+    }
+
+    /* Tray note */
+    .tray-note {
+      width:min(1080px, 100% - 32px);
+      margin:.8rem auto .35rem;
+      text-align:center;
+      font-weight:600;
+      color:#8fffa4;
+      font-size:.85rem;
+      opacity:.85;
+    }
+
+    /* Back button — neon green gradient */
+    .back-row { text-align:center; }
+    .back-btn {
+      display:inline-block;
+      margin:.6rem auto calc(1rem + var(--bar-h));
+      padding:.65rem 1.3rem;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.9rem;
+      text-decoration:none;
+      background:
+        linear-gradient(180deg, #b6ff9f 0%, #7dff5f 55%, #2b7a36 100%) padding-box,
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(125,255,95,.45) 55%, rgba(33,99,54,.35)) border-box;
+      border:1px solid transparent;
+      color:#051807;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 6px 16px rgba(0,0,0,.45);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      position:relative;
+      z-index:5;
+    }
+    .back-btn:hover {
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 10px 20px rgba(0,0,0,.55);
+    }
+    .back-btn:active {
+      transform:scale(.985);
+      box-shadow:inset 0 -2px 0 rgba(125,255,95,.45), 0 6px 12px rgba(0,0,0,.45);
+    }
+
+    /* Bottom nav */
+    .bottom-nav{ background:#0a0f0a; border-top:1px solid #0f2e18; }
+    .bottom-nav a{ color:#7dff5f; text-shadow:0 0 10px rgba(125,255,95,.18); }
+    .bottom-nav a.active{ box-shadow: inset 0 -2px 0 rgba(125,255,95,.85); }
+  </style>
+</head>
+
+<body class="club">
+  <!-- hero -->
+  <header class="hero animate__animated animate__fadeInDown" role="banner">
+    <img src="images/gabby-logo.png" alt="Gabby's Boutique Hotel & Lounge" class="logo" />
+    <p class="tagline gold-text">Glow Nights • Premium Vibes</p>
+  </header>
+
+  <!-- title -->
+  <div class="menu-title" aria-label="Menu">
+    <h2 class="gold-text">SMOOTHIES</h2>
+    <span class="menu-underline" aria-hidden="true"></span>
+  </div>
+
+  <main role="main">
+    <section class="smoothie-card">
+      <img class="smoothie-hero" src="images/smoothies.jpg" alt="Assorted Smoothies" />
+      <div class="smoothie-body">
+        <h3 class="smoothie-title">🥤 Smoothies</h3>
+        <p class="smoothie-price-note">(All ₦6,000)</p>
+        <ul class="smoothie-list">
+          <li>Avocado Banana</li>
+          <li>Ginger Mix</li>
+          <li>Special Smoothie</li>
+          <li>Banana Smoothie</li>
+          <li>Pineapple Smoothie</li>
+          <li>Apple Smoothie</li>
+          <li>Watermelon Smoothie</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Tray note -->
+    <div class="tray-note">
+      Alcohol is served to guests 18+ only — drink responsibly.
+    </div>
+
+    <!-- Back button -->
+    <div class="back-row">
+      <a href="./drinks.html" class="back-btn">← Back to Drinks</a>
+    </div>
+  </main>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="./index.html">Home</a>
+    <a href="./bites.html">Bites</a>
+    <a href="./drinks.html" class="active">Drinks</a>
+    <a href="./rooms.html">Rooms</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+</body>
+</html>

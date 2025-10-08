@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drinks — Gabby's Boutique Hotel & Lounge</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    /* ===== DRINKS Pills — layout (same grid) but CLUB COLORS ===== */
+    .menu-toggle {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+      gap: 12px 14px !important;
+      justify-items: center !important;
+      margin: 1rem auto 1.2rem !important;
+      max-width: 1080px;
+      padding: .25rem .8rem .6rem;
+    }
+
+    @media (max-width: 900px) {
+      .menu-toggle {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .menu-toggle {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    .menu-toggle a {
+      width: 100%;
+      text-align: center;
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, #b6ff9f 0%, #7dff5f 55%, #2b7a36 100%) padding-box,
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(125,255,95,.45) 55%, rgba(33,99,54,.35)) border-box !important;
+      border: 1px solid transparent !important;
+      color: #051807 !important;
+      font-weight: 800;
+      letter-spacing: .02em;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.10),
+        0 12px 26px rgba(0,0,0,.60),
+        0 0 18px rgba(125,255,95,.18) !important;
+      transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
+      padding: .62rem 1.1rem;
+    }
+
+    .menu-toggle a:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.06);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 18px 34px rgba(0,0,0,.62),
+        0 0 22px rgba(125,255,95,.25) !important;
+    }
+
+    .menu-toggle a:active {
+      transform: scale(.985);
+      box-shadow:
+        inset 0 -2px 0 rgba(125,255,95,.45),
+        0 10px 20px rgba(0,0,0,.48) !important;
+    }
+
+    /* Neon text like Bites */
+    .gold-text {
+      background: linear-gradient(180deg, #b6ff9f 0%, #7dff5f 48%, #2b7a36 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 22px rgba(125,255,95,.25),
+        0 0 40px rgba(125,255,95,.18);
+    }
+
+    /* Logo glow */
+    .logo {
+      filter:
+        drop-shadow(0 18px 46px rgba(125,255,95,.20))
+        drop-shadow(0 0 28px rgba(125,255,95,.24));
+    }
+
+    /* Small description font */
+    small {
+      display:block;
+      color:#cfcfcf;
+      font-size:0.7rem;
+      line-height:1.3;
+      margin-top:4px;
+    }
+
+    /* Tray Note */
+    .tray-note {
+      box-sizing: border-box;
+      width: min(1120px, 100% - 32px);
+      margin: 1rem auto calc(var(--bar-h) + 1.2rem);
+      padding: .85rem 1.1rem;
+      text-align: center;
+      line-height: 1.35;
+      font-weight: 600;
+      font-size: .95rem;
+      background: rgba(12,12,12,0.88);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.04);
+      color: #d9d9d9;
+    }
+
+    .food-grid .tray-note {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+
+    /* Bottom nav accents — neon green */
+    .bottom-nav {
+      background: #0a0f0a;
+      border-top: 1px solid #0f2e18;
+    }
+    .bottom-nav a {
+      color: #7dff5f;
+      text-shadow: 0 0 10px rgba(125,255,95,.18);
+    }
+    .bottom-nav a.active {
+      box-shadow: inset 0 -2px 0 rgba(125,255,95,.85);
+    }
+  </style>
+</head>
+
+<body class="club">
+  <!-- Hero -->
+  <header class="hero animate__animated animate__fadeInDown" role="banner">
+    <img src="images/gabby-logo.png" alt="Gabby's Club Lounge" class="logo" />
+    <p class="tagline gold-text">Glow Nights • Premium Vibes</p>
+  </header>
+
+  <!-- Title -->
+  <div class="menu-title" aria-label="Menu">
+    <h2 class="gold-text">DRINKS MENU</h2>
+    <span class="menu-underline" aria-hidden="true"></span>
+  </div>
+
+  <!-- Category Pills -->
+  <nav class="menu-toggle" aria-label="Drink categories">
+    <a href="./whiskey.html">Whiskey</a>
+    <a href="./bitters.html">Bitters/Liquor</a>
+    <a href="./beer.html">Beers</a>
+    <a href="./mixers.html">Soft/Mixers</a>
+    <a href="./wines.html">Wines</a>
+    <a href="./champagne.html">Champagne/Vodka</a>
+    <a href="./cognac.html">Cognac</a>
+    <a href="./gin.html">Gin/Rum</a>
+    <a href="./cocktails.html">Cocktails</a>
+    <a href="./smoothies.html">Smoothies</a>
+    <a href="./milkshakes.html">Milkshakes</a>
+    <a href="./tequila.html">Tequila</a>
+  </nav>
+
+  <!-- Preview Cards -->
+  <main role="main">
+    <div class="food-grid">
+      <!-- Beer -->
+      <article class="food-card">
+        <img src="images/beer.jpg" alt="Beer" />
+        <div class="food-info">
+          <h4 class="food-name gold-text">Beer</h4>
+          <p class="food-price gold-text">₦2,000</p>
+        </div>
+      </article>
+
+      <!-- Zombie Cocktail -->
+      <article class="food-card">
+        <img src="images/zombie-cocktail.jpg" alt="Zombie Cocktail" />
+        <div class="food-info">
+          <h4 class="food-name gold-text">Zombie</h4>
+          <p class="food-price gold-text">₦6,000</p>
+          <small>Mixed Rum, Apricot Brandy, Falernum Liqueur, Lemon, Orange & Pineapple Juice.</small>
+        </div>
+      </article>
+
+      <!-- Macallan Double Cask (12yrs) -->
+      <article class="food-card">
+        <img src="images/macallan-double-cask-12yrs.jpg" alt="Macallan Double Cask (12yrs)" />
+        <div class="food-info">
+          <h4 class="food-name gold-text">Macallan Double Cask (12yrs)</h4>
+          <p class="food-price gold-text">₦135,000</p>
+        </div>
+      </article>
+
+      <!-- Hennessy VSOP -->
+      <article class="food-card">
+        <img src="images/hennessy-vsop.jpg" alt="Hennessy VSOP" />
+        <div class="food-info">
+          <h4 class="food-name gold-text">Hennessy VSOP</h4>
+          <p class="food-price gold-text">₦220,000</p>
+        </div>
+      </article>
+
+      <!-- Tray Note -->
+      <div class="tray-note">
+        Alcohol is served to guests 18+ only — drink responsibly.
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="./index.html">Home</a>
+    <a href="./bites.html">Bites</a>
+    <a href="./drinks.html" class="active">Drinks</a>
+    <a href="./rooms.html">Rooms</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+</body>
+</html>

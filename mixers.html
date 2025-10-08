@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soft / Mixers — Gabby's Boutique Hotel & Lounge</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    /* ===== Neon Green Theme (same as Bites/Drinks) ===== */
+    .gold-text{
+      background: linear-gradient(180deg, #b6ff9f 0%, #7dff5f 48%, #2b7a36 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 0 22px rgba(125,255,95,.25), 0 0 40px rgba(125,255,95,.18);
+    }
+    .logo{
+      filter: drop-shadow(0 18px 46px rgba(125,255,95,.20))
+              drop-shadow(0 0 28px rgba(125,255,95,.24));
+    }
+
+    /* Grid Layout */
+    .mixers-grid{
+      width:min(1080px, 100% - 32px);
+      margin:0 auto 1rem;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:20px;
+    }
+    @media (max-width: 900px){ .mixers-grid{ grid-template-columns: repeat(2,1fr);} }
+    @media (max-width: 640px){ .mixers-grid{ grid-template-columns: 1fr; } }
+
+    /* Card Styling */
+    .mixers-col{
+      background: radial-gradient(160% 180% at 50% -30%, #0f1a0f 0%, #000 60%);
+      border:1px solid rgba(125,255,95,.35);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 8px 22px rgba(0,0,0,.45);
+      display:flex;
+      flex-direction:column;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .mixers-col:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 28px rgba(125,255,95,.18);
+    }
+
+    .mixers-hero{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-bottom:1px solid #1d1d1d;
+    }
+
+    .mixers-heading{
+      margin:.6rem 1rem .3rem;
+      font-weight:900;
+      letter-spacing:.03em;
+      color:#7dff5f;
+      text-shadow:0 1px 2px rgba(0,0,0,.3);
+    }
+
+    /* Price list */
+    .price-list--inner{ padding:.2rem .5rem .8rem; }
+    .price-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:.55rem .7rem;
+      border-bottom:1px dotted rgba(125,255,95,.25);
+      gap:1rem;
+    }
+    .price-row:last-child{ border-bottom:none; }
+
+    .item-name{
+      margin:0;
+      font-weight:700;
+      font-size:.9rem;
+      color:#a5ffb1;
+    }
+    .item-price{
+      margin:0;
+      color:#fff;
+      font-weight:800;
+      font-size:.9rem;
+      white-space:nowrap;
+    }
+
+    /* Tray note */
+    .tray-note{
+      text-align:center;
+      font-weight:600;
+      margin-top:1.2rem;
+      color:#8fffa4;
+      font-size:.85rem;
+      opacity:.85;
+    }
+
+    /* Back button — neon green gradient */
+    .back-btn {
+      display:inline-block;
+      margin:.9rem auto calc(var(--bar-h) + 1.1rem);
+      padding:.65rem 1.3rem;
+      border-radius:999px;
+      font-weight:700;
+      font-size:.9rem;
+      text-decoration:none;
+      background:
+        linear-gradient(180deg, #b6ff9f 0%, #7dff5f 55%, #2b7a36 100%) padding-box,
+        linear-gradient(180deg, rgba(0,0,0,.65), rgba(125,255,95,.45) 55%, rgba(33,99,54,.35)) border-box;
+      border:1px solid transparent;
+      color:#051807;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.15), 0 6px 16px rgba(0,0,0,.45);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .back-btn:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.05);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2), 0 10px 20px rgba(0,0,0,.55);
+    }
+    .back-btn:active{
+      transform:scale(.985);
+      box-shadow:inset 0 -2px 0 rgba(125,255,95,.45), 0 6px 12px rgba(0,0,0,.45);
+    }
+
+    /* Bottom nav */
+    .bottom-nav{ background:#0a0f0a; border-top:1px solid #0f2e18; }
+    .bottom-nav a{ color:#7dff5f; text-shadow:0 0 10px rgba(125,255,95,.18); }
+    .bottom-nav a.active{ box-shadow: inset 0 -2px 0 rgba(125,255,95,.85); }
+  </style>
+</head>
+
+<body class="club">
+  <!-- hero -->
+  <header class="hero animate__animated animate__fadeInDown" role="banner">
+    <img src="images/gabby-logo.png" alt="Gabby's Boutique Hotel & Lounge" class="logo" />
+    <p class="tagline gold-text">Glow Nights • Premium Vibes</p>
+  </header>
+
+  <!-- title -->
+  <div class="menu-title" aria-label="Menu">
+    <h2 class="gold-text">SOFT / MIXERS</h2>
+    <span class="menu-underline" aria-hidden="true"></span>
+  </div>
+
+  <!-- Grid -->
+  <section class="mixers-grid" aria-label="Soft drinks, juice and energy drinks">
+
+    <!-- Soft Drinks -->
+    <div class="mixers-col">
+      <img class="mixers-hero" src="images/soft-drinks.jpg" alt="Assorted soft drinks" />
+      <h3 class="mixers-heading">🥤 Soft Drinks</h3>
+      <div class="price-list--inner">
+        <div class="price-row"><h4 class="item-name">Water</h4><p class="item-price">₦500</p></div>
+        <div class="price-row"><h4 class="item-name">Pepsi</h4><p class="item-price">₦1,000</p></div>
+        <div class="price-row"><h4 class="item-name">Coke</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Fanta</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Fayrous</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Sprite</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Maltina</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Schweppes</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Tonic Water</h4><p class="item-price">₦2,000</p></div>
+      </div>
+    </div>
+
+    <!-- Juice -->
+    <div class="mixers-col">
+      <img class="mixers-hero" src="images/juice.jpg" alt="Assorted fruit juices" />
+      <h3 class="mixers-heading">🍹 Juice</h3>
+      <div class="price-list--inner">
+        <div class="price-row"><h4 class="item-name">Hollandia</h4><p class="item-price">₦3,500</p></div>
+        <div class="price-row"><h4 class="item-name">Exotic</h4><p class="item-price">₦3,500</p></div>
+        <div class="price-row"><h4 class="item-name">Chivita</h4><p class="item-price">₦3,500</p></div>
+        <div class="price-row"><h4 class="item-name">Tomi Cranberry</h4><p class="item-price">₦3,500</p></div>
+      </div>
+
+      <h3 class="mixers-heading">🧃 Fresh Juice <span style="font-size:.85rem; font-weight:400;">(All ₦4,000)</span></h3>
+      <div class="price-list--inner">
+        <div class="price-row"><h4 class="item-name">Pineapple</h4><p class="item-price">₦4,000</p></div>
+        <div class="price-row"><h4 class="item-name">Watermelon</h4><p class="item-price">₦4,000</p></div>
+        <div class="price-row"><h4 class="item-name">Orange</h4><p class="item-price">₦4,000</p></div>
+      </div>
+    </div>
+
+    <!-- Energy Drinks -->
+    <div class="mixers-col">
+      <img class="mixers-hero" src="images/energy-drinks.jpg" alt="Energy drinks" />
+      <h3 class="mixers-heading">⚡ Energy Drinks</h3>
+      <div class="price-list--inner">
+        <div class="price-row"><h4 class="item-name">Red Bull</h4><p class="item-price">₦3,000</p></div>
+        <div class="price-row"><h4 class="item-name">Black Bullet</h4><p class="item-price">₦3,000</p></div>
+        <div class="price-row"><h4 class="item-name">Predators</h4><p class="item-price">₦1,500</p></div>
+        <div class="price-row"><h4 class="item-name">Monster</h4><p class="item-price">₦3,000</p></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Tray note -->
+  <div class="tray-note">
+    Alcohol is served to guests 18+ only — drink responsibly.
+  </div>
+
+  <!-- Back button -->
+  <div style="text-align:center;">
+    <a href="./drinks.html" class="back-btn">← Back to Drinks</a>
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="./index.html">Home</a>
+    <a href="./bites.html">Bites</a>
+    <a href="./drinks.html" class="active">Drinks</a>
+    <a href="./rooms.html">Rooms</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+</body>
+</html>
