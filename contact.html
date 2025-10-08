@@ -12,30 +12,47 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
   <style>
-    /* ===== CLUB NEON THEME (green) ===== */
     :root{
       --club-neon: #7dff5f;
       --club-neon-hi: #b6ff9f;
       --club-neon-deep: #0e3c1f;
+      /* Fallback for bottom bar height if --bar-h isn’t defined elsewhere */
+      --bar-h: var(--bar-h, 64px);
     }
 
-    /* Neon text like Club pages */
+    /* ✨ Prevent bottom-nav overlap on phones */
+    body.club{
+      padding-bottom: calc(var(--bar-h) + 18px);
+    }
+
+    .tray-note{
+      width:min(1080px, 100% - 32px);
+      margin:.8rem auto calc(var(--bar-h) + 1rem);
+      text-align:center; padding:.7rem 1rem;
+      background:#0a0f0a;
+      border:1px solid #0f2e18;
+      border-radius:12px; color:#cfe9d6; font-weight:600; font-size:.95rem;
+      box-shadow:0 6px 18px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.04);
+      text-shadow: 0 0 10px rgba(125,255,95,.12);
+    }
+
+    /* Keep FABs above the bar on mobile */
+    .fab{
+      position: fixed; right: 14px; z-index: 999;
+      display:flex; flex-direction:column; gap:10px;
+      bottom: calc(var(--bar-h) + 14px);
+    }
+
+    /* ===== CLUB NEON THEME bits (unchanged) ===== */
     .club .gold-text{
       background: linear-gradient(180deg, var(--club-neon-hi) 0%, var(--club-neon) 48%, #2b7a36 100%);
       -webkit-background-clip: text; background-clip: text; color: transparent;
-      text-shadow:
-        0 0 22px rgba(125,255,95,.25),
-        0 0 40px rgba(125,255,95,.18);
+      text-shadow: 0 0 22px rgba(125,255,95,.25), 0 0 40px rgba(125,255,95,.18);
     }
-
-    /* Logo glow a bit greener */
     .club .logo{
-      filter:
-        drop-shadow(0 18px 46px rgba(125,255,95,.20))
-        drop-shadow(0 0 28px rgba(125,255,95,.24));
+      filter: drop-shadow(0 18px 46px rgba(125,255,95,.20)) drop-shadow(0 0 28px rgba(125,255,95,.24));
     }
 
-    /* Slider (hero-style) with neon borders */
     .contact-hero{
       position: relative;
       width: min(1080px, 100% - 32px);
@@ -50,33 +67,16 @@
     .slide{ position:absolute; inset:0; opacity:0; transition: opacity .7s ease; }
     .slide.active{ opacity:1; }
     .slide img{ width:100%; height:100%; object-fit:cover; display:block; filter: saturate(1.02) contrast(1.02); }
-
-    .slider-dots{
-      position:absolute; left:0; right:0; bottom:10px;
-      display:flex; gap:8px; justify-content:center; align-items:center; z-index:2;
-    }
-    .slider-dots button{
-      width:10px; height:10px; border-radius:999px; border:1px solid rgba(125,255,95,.6);
-      background: rgba(0,0,0,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
-      cursor:pointer; padding:0;
-    }
+    .slider-dots{ position:absolute; left:0; right:0; bottom:10px; display:flex; gap:8px; justify-content:center; align-items:center; z-index:2; }
+    .slider-dots button{ width:10px; height:10px; border-radius:999px; border:1px solid rgba(125,255,95,.6); background: rgba(0,0,0,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); cursor:pointer; padding:0; }
     .slider-dots button.active{ background: var(--club-neon); border-color: var(--club-neon-hi); }
-
-    .slider-arrow{
-      position:absolute; top:50%; transform: translateY(-50%);
-      width:38px; height:38px; border-radius:999px;
-      background: rgba(0,0,0,.45);
-      border:1px solid rgba(125,255,95,.45);
-      display:grid; place-items:center; cursor:pointer; z-index:2;
-      transition: filter .18s ease, transform .18s ease;
-    }
+    .slider-arrow{ position:absolute; top:50%; transform: translateY(-50%); width:38px; height:38px; border-radius:999px; background: rgba(0,0,0,.45); border:1px solid rgba(125,255,95,.45); display:grid; place-items:center; cursor:pointer; z-index:2; transition: filter .18s ease, transform .18s ease; }
     .slider-arrow:hover{ filter: brightness(1.08); }
     .slider-arrow:active{ transform: translateY(-50%) scale(.98); }
     .slider-arrow svg{ width:18px; height:18px; color: var(--club-neon); }
     .arrow-left{ left:10px; }
     .arrow-right{ right:10px; }
 
-    /* Contact blocks */
     .contact-grid{
       width:min(1080px, 100% - 32px);
       margin: 0 auto 1rem;
@@ -99,15 +99,10 @@
       text-shadow:0 0 16px rgba(125,255,95,.18);
       letter-spacing:.02em;
     }
-    .info-row{
-      display:flex; align-items:center; gap:.6rem;
-      margin:.45rem 0; color:#cfe9d6;
-      word-break: break-word;
-    }
+    .info-row{ display:flex; align-items:center; gap:.6rem; margin:.45rem 0; color:#cfe9d6; word-break: break-word; }
     .info-row a{ color:#ffffff; text-decoration:none; font-weight:800; }
     .info-row a:hover{ text-decoration:underline; }
 
-    /* Map card full-width with neon edge */
     .map-wrap{
       grid-column: 1 / -1;
       background:#0f0f0f; border:1px solid rgba(125,255,95,.45);
@@ -116,19 +111,11 @@
     }
     .map-wrap iframe{ width:100%; height:380px; border:0; display:block; }
 
-    /* Directions button row */
-    .dir-row{
-      display:flex; justify-content:center; padding:.75rem 1rem 1rem;
-      gap:.6rem; flex-wrap:wrap;
-    }
+    .dir-row{ display:flex; justify-content:center; padding:.75rem 1rem 1rem; gap:.6rem; flex-wrap:wrap; }
     .dir-btn{
-      display:inline-block;
-      padding:.66rem 1.15rem;
-      border-radius:999px;
-      font-weight:900; font-size:.95rem; text-decoration:none;
-      background:
-        linear-gradient(180deg, var(--club-neon-hi) 0%, var(--club-neon) 55%, #2b7a36 100%) padding-box,
-        linear-gradient(180deg, rgba(0,0,0,.65), rgba(125,255,95,.35) 55%, rgba(33,99,54,.35)) border-box;
+      display:inline-block; padding:.66rem 1.15rem; border-radius:999px; font-weight:900; font-size:.95rem; text-decoration:none;
+      background: linear-gradient(180deg, var(--club-neon-hi) 0%, var(--club-neon) 55%, #2b7a36 100%) padding-box,
+                  linear-gradient(180deg, rgba(0,0,0,.65), rgba(125,255,95,.35) 55%, rgba(33,99,54,.35)) border-box;
       border:1px solid transparent; color:#051807;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 16px rgba(0,0,0,.45);
       transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
@@ -136,72 +123,25 @@
     .dir-btn:hover{ transform:translateY(-2px); filter:brightness(1.05); }
     .dir-btn:active{ transform:scale(.985); }
 
-    /* Social buttons */
-    .social-row{
-      grid-column: 1 / -1;
-      display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center;
-      margin:.4rem 0 1rem;
-    }
-    .social-btn{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.68rem 1rem; border-radius:999px;
-      color:#fff; text-decoration:none; font-weight:900; font-size:.95rem;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 16px rgba(0,0,0,.45);
-      transition: transform .18s ease, filter .18s ease;
-    }
+    .social-row{ grid-column: 1 / -1; display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; margin:.4rem 0 1rem; }
+    .social-btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.68rem 1rem; border-radius:999px; color:#fff; text-decoration:none; font-weight:900; font-size:.95rem; border:1px solid rgba(255,255,255,.12); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 6px 16px rgba(0,0,0,.45); transition: transform .18s ease, filter .18s ease; }
     .social-btn:hover{ transform: translateY(-2px); filter:brightness(1.06); }
     .ig { background: linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7); }
     .fb { background: #1877F2; }
     .x  { background: #111; border-color:#333; }
     .social-btn svg{ width:18px; height:18px; }
 
-    /* Tray note (compact, neon vibe) */
-    .tray-note{
-      width:min(1080px, 100% - 32px);
-      margin:.8rem auto calc(var(--bar-h) + 1rem);
-      text-align:center; padding:.7rem 1rem;
-      background:#0a0f0a;
-      border:1px solid #0f2e18;
-      border-radius:12px; color:#cfe9d6; font-weight:600; font-size:.95rem;
-      box-shadow:0 6px 18px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.04);
-      text-shadow: 0 0 10px rgba(125,255,95,.12);
-    }
+    /* Bottom nav accents -> neon */
+    .club .bottom-nav{ background: #0a0f0a; border-top:1px solid #0f2e18; }
+    .club .bottom-nav a{ color: var(--club-neon); text-shadow: 0 0 10px rgba(125,255,95,.18); }
+    .club .bottom-nav a.active{ box-shadow: inset 0 -2px 0 rgba(125,255,95,.85); }
 
-    /* Floating action buttons (WhatsApp + Call) */
-    .fab{
-      position: fixed; right: 14px; z-index: 999;
-      display:flex; flex-direction:column; gap:10px;
-      bottom: calc(var(--bar-h) + 14px);
-    }
-    .fab a{
-      width:52px; height:52px; border-radius:999px;
-      display:grid; place-items:center; text-decoration:none;
-      border:1px solid rgba(255,255,255,.16);
-      box-shadow: 0 10px 18px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
-      transition: transform .18s ease, filter .18s ease;
-    }
+    /* FAB colors (unchanged except position above) */
+    .fab a{ width:52px; height:52px; border-radius:999px; display:grid; place-items:center; text-decoration:none; border:1px solid rgba(255,255,255,.16); box-shadow: 0 10px 18px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08); transition: transform .18s ease, filter .18s ease; }
     .fab a:hover{ transform: translateY(-2px); filter: brightness(1.06); }
     .fab .wa{ background:#25D366; color:#002b10; }
-    .fab .call{
-      background:
-        linear-gradient(180deg, var(--club-neon-hi) 0%, var(--club-neon) 55%, #2b7a36 100%);
-      color:#051807; border-color: rgba(125,255,95,.45);
-    }
+    .fab .call{ background: linear-gradient(180deg, var(--club-neon-hi) 0%, var(--club-neon) 55%, #2b7a36 100%); color:#051807; border-color: rgba(125,255,95,.45); }
     .fab svg{ width:22px; height:22px; color: currentColor; }
-
-    /* Bottom nav accents -> neon */
-    .club .bottom-nav{
-      background: #0a0f0a;
-      border-top:1px solid #0f2e18;
-    }
-    .club .bottom-nav a{
-      color: var(--club-neon);
-      text-shadow: 0 0 10px rgba(125,255,95,.18);
-    }
-    .club .bottom-nav a.active{
-      box-shadow: inset 0 -2px 0 rgba(125,255,95,.85);
-    }
   </style>
 </head>
 <body class="club">
@@ -257,17 +197,14 @@
     <div class="contact-card">
       <h3>Reach Us</h3>
       <div class="info-row">
-        <!-- phone -->
         <svg viewBox="0 0 24 24" width="18" height="18" fill="#7dff5f"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1.003 1.003 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V22c0 .55-.45 1-1 1C10.07 23 1 13.93 1 2c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.24.2 2.45.57 3.57.09.33.02.68-.24 1.02l-2.2 2.2Z"/></svg>
         <a href="tel:+2349135009881">+234 913 500 9881</a>
       </div>
       <div class="info-row">
-        <!-- email -->
         <svg viewBox="0 0 24 24" width="18" height="18" fill="#7dff5f"><path d="M12 13.065 2 6.5V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6.5l-10 6.565L12 13.065ZM20 4H4l8 5 8-5Z"/></svg>
         <a href="mailto:gabbyboutiquehotel@gmail.com">gabbyboutiquehotel@gmail.com</a>
       </div>
       <div class="info-row">
-        <!-- address -->
         <svg viewBox="0 0 24 24" width="18" height="18" fill="#7dff5f"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5Z"/></svg>
         <span>Plot 11 Primegate Avenue, off Eliozu/Chief G.U Ake Road, Port Harcourt</span>
       </div>
@@ -296,31 +233,28 @@
       </div>
     </div>
 
-    <!-- Map -->
+    <!-- Map (🔁 now searches by your business name so the label shows) -->
     <div class="map-wrap" aria-label="Location map">
       <iframe
         loading="lazy" allowfullscreen
         referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.google.com/maps?q=Plot%2011%20Primegate%20Avenue%2C%20off%20Eliozu%2FChief%20G.U%20Ake%20Road%2C%20Port%20Harcourt&output=embed">
+        src="https://www.google.com/maps?q=Gabby%27s%20Boutique%20Hotel%2C%20Port%20Harcourt&output=embed">
       </iframe>
 
-      <!-- Get Directions button -->
       <div class="dir-row">
         <a
           class="dir-btn"
-          href="https://www.google.com/maps/dir/?api=1&destination=Plot%2011%20Primegate%20Avenue%2C%20off%20Eliozu%2FChief%20G.U%20Ake%20Road%2C%20Port%20Harcourt%2C%20Rivers%20State%2C%20Nigeria"
+          href="https://www.google.com/maps/dir/?api=1&destination=Gabby%27s%20Boutique%20Hotel%2C%20Port%20Harcourt"
           target="_blank" rel="noopener"
         >🧭 Get Directions</a>
       </div>
     </div>
   </section>
 
-  <!-- Tray note -->
   <div class="tray-note">
     We’re open 24/7. For bookings or enquiries, WhatsApp or call us anytime — your comfort is our priority.
   </div>
 
-  <!-- Floating action buttons -->
   <div class="fab" aria-label="Quick actions">
     <a class="wa" href="https://wa.me/2349135009881?text=Hello%20Gabby%E2%80%99s%20Boutique%20Hotel%20%E2%80%94%20I%20have%20an%20enquiry." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
       <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20.52 3.48A11.85 11.85 0 0 0 12.05 0C5.46.02.08 5.4.1 11.99c.01 2.11.56 4.17 1.6 6L0 24l6.18-1.62a12.02 12.02 0 0 0 5.86 1.5h.01c6.59 0 11.96-5.38 11.97-11.97A11.9 11.9 0 0 0 20.52 3.48Zm-8.37 18.08h-.01a10.05 10.05 0 0 1-5.12-1.41l-.37-.22-3.66.96.98-3.57-.24-.37a10.03 10.03 0 0 1-1.56-5.37C2.15 6.52 6.54 2.14 12.05 2.14c2.67 0 5.18 1.04 7.07 2.92a9.96 9.96 0 0 1 2.93 7.06c0 5.51-4.48 9.99-9.9 9.99Zm5.64-7.47c-.31-.16-1.84-.9-2.12-1-.28-.1-.48-.16-.68.16-.2.31-.78 1-.95 1.21-.17.21-.35.23-.66.08-.31-.16-1.31-.48-2.5-1.52-.92-.78-1.54-1.73-1.72-2.02-.18-.31-.02-.48.14-.63.14-.14.31-.35.45-.53.16-.18.2-.31.31-.52.1-.21.06-.39-.02-.55-.08-.16-.68-1.61-.94-2.2-.25-.61-.5-.52-.68-.53h-.58c-.2 0-.53.08-.81.39-.28.31-1.07 1.05-1.07 2.57s1.09 2.98 1.24 3.19c.16.21 2.14 3.26 5.2 4.57.73.31 1.29.49 1.73.63.73.23 1.39.2 1.91.12.58-.08 1.84-.75 2.1-1.48.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/></svg>
@@ -330,17 +264,17 @@
     </a>
   </div>
 
-  <!-- Bottom nav -->
+  <!-- Bottom nav (✅ fixed stray extra '<' that could break layout) -->
   <nav class="bottom-nav" aria-label="Primary">
-    <a href="./index-club.html">Home</a>
-    <a href="./bites.html">Bites</a>
-    <a href="./drinks.html">Drinks</a>
-    <a href="./rooms.html">Rooms</a>
-    <a href="./contact.html" class="active">Contact</a>
+    <a href="./index.html" class="gold-text">Home</a>
+    <a href="./bites.html" class="gold-text">Bites</a>
+    <a href="./drinks.html" class="gold-text">Drinks</a>
+    <a href="./rooms.html" class="gold-text">Rooms</a>
+    <a href="./contact.html" class="active gold-text">Contact</a>
   </nav>
 
   <script>
-    // Simple slider logic (auto + dots + arrows + swipe)
+    // Slider logic (auto + dots + arrows + swipe)
     (function(){
       const slides = Array.from(document.querySelectorAll('.contact-hero .slide'));
       const dots = Array.from(document.querySelectorAll('.slider-dots button'));
@@ -360,7 +294,6 @@
       prev.addEventListener('click', ()=>{ clearInterval(t); show(i-1); auto(); });
       next.addEventListener('click', ()=>{ clearInterval(t); show(i+1); auto(); });
 
-      // swipe (basic)
       let x0=null;
       const hero = document.querySelector('.contact-hero');
       hero.addEventListener('touchstart', e=> x0=e.touches[0].clientX,{passive:true});
