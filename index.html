@@ -115,6 +115,10 @@
 
       /* tighten featured title spacing */
       .club .featured{ margin-top:.2rem; }
+
+      /* make the VIP card a full-card telephone link */
+      .card-call { display:block; color:inherit; text-decoration:none; }
+      .card-call:focus { outline: 2px solid var(--club-neon); outline-offset: 3px; }
     </style>
   </head>
 
@@ -135,12 +139,16 @@
       <img src="./images/club-hero.jpg" alt="Club interior ambience" />
     </div>
 
-    <!-- quick chips (optional: jump to tabs/sections) -->
+    <!-- quick chips (now WhatsApp shortcuts) -->
     <nav class="club-chips" aria-label="Quick filters">
-      
-    
-      <a class="club-chip" href="./rooms.html">VIP Rooms</a>
-      <a class="club-chip" href="./contact.html">Book a Table</a>
+      <!-- Open WhatsApp chats in new tabs -->
+      <a class="club-chip"
+         href="https://wa.me/2349135009881?text=Hello%20Gabby%E2%80%99s%20—%20I%E2%80%99d%20like%20to%20book%20a%20VIP%20room."
+         target="_blank" rel="noopener">VIP Rooms</a>
+
+      <a class="club-chip"
+         href="https://wa.me/2349135009881?text=Hello%20Gabby%E2%80%99s%20—%20please%20book%20a%20table%20for%20me."
+         target="_blank" rel="noopener">Book a Table</a>
     </nav>
 
     <main role="main">
@@ -182,13 +190,15 @@
             </div>
           </article>
 
-          <!-- Card 4 -->
+          <!-- VIP Bottle Service — whole card calls -->
           <article class="food-card">
-            <img src="./images/vip-lounge.jpg" alt="VIP Bottle Service" />
-            <div class="food-info">
-              <h4 class="food-name gold-text">VIP Bottle Service</h4>
-              <p class="food-price gold-text">Reserve</p>
-            </div>
+            <a href="tel:+2349136500079" class="card-call" aria-label="Call to reserve VIP bottle service">
+              <img src="./images/vip-lounge.jpg" alt="VIP Bottle Service" />
+              <div class="food-info">
+                <h4 class="food-name gold-text">VIP Bottle Service</h4>
+                <p class="food-price gold-text">Reserve</p>
+              </div>
+            </a>
           </article>
         </div>
       </section>
